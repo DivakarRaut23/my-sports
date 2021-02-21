@@ -1,7 +1,8 @@
 function MainScore() {
     return (
-      <div className="App">
-        <h1> This is Biiiiiiig Main Score</h1>
+      <div style={{minHeight:'300px'}}>
+        <h3> Aus</h3>
+        <h1>1/223 (114.3 Overs)</h1>
       </div>
     );
   }

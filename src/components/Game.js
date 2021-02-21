@@ -1,7 +1,7 @@
-function Game () {
+function Game (props) {
     return (
-      <div className="App">
-        <h1> This is Game Component </h1>
+      <div style={{backgroundColor:'blueviolet'}}>
+        <h1> {props.homeTeam} VS {props.awayTeam} </h1>
       </div>
     );
   }

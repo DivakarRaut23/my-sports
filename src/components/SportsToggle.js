@@ -2,11 +2,11 @@ import React from 'react';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-function SportsToggle() {
+function SportsToggle(props) {
     return (
       <div>
-          <Tabs aria-label="simple tabs example">
-            <Tab label="Football" />
+          <Tabs value={props.title} onChange={props.selectSports}aria-label="simple tabs example">
+            <Tab label="Football" value="Football"/>
             <Tab label="Cricket"  />
           </Tabs>
       </div>
