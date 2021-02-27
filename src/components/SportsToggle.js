@@ -7,7 +7,7 @@ function SportsToggle(props) {
       <div>
           <Tabs value={props.title} onChange={props.selectSports}aria-label="simple tabs example">
             <Tab label="Football" value="Football"/>
-            <Tab label="Cricket"  />
+            <Tab label="Cricket" value="Cricket" />
           </Tabs>
       </div>
     );

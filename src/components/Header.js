@@ -43,12 +43,12 @@ function Header () {
         <AppBar position="static">
           <Toolbar>
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            { (title === "Cricket") ?  <SportsCricketIcon/> : <SportsSoccerIcon />}
+            <SportsCricketIcon/> 
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              {`My ${title} Score`}
+              My Cricket Score
             </Typography>
-            <SportsToggle selectSports={selectSports} title={title} />
+            
           </Toolbar>
         </AppBar>
       </div>

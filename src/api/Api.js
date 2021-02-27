@@ -1,26 +1,30 @@
 import React, { useState ,useEffect} from 'react';
 import Axios from 'axios';
 
-const Api = () => {
+const Api = (props) => {
 
-const API_KEY="MSj48ezblpQglbbk4Km1ovX8gX33"
+const API_KEY=  process.env.REACT_APP_CRIC_INFO
 
-const [matches, setMatches] = useState([])
+
 
 
 
 useEffect(() => {
 
+  console.log('test')
+
     Axios.get(`https://cricapi.com/api/matches?apikey=${API_KEY}`).then(
       (response) => {
-        // console.log(response);
-        setMatches(response.data.matches);
-        console.log("Matches >>>",matches);
+      
+        props.setMatches(response.data.props.matches);
+        
       }
     ).catch((error) => console.log('Error: ', error));
+
+    console.log("Matches >>>",props.matches);
   
 
-});
+},[]);
 
 let d = new Date();
 let year = d.getFullYear();
@@ -29,9 +33,9 @@ console.log("Date >>>", d)
 
 return (
     <div>
-     {matches.filter(match => (match.matchStarted === 'false')).map(upcomingMatch => (
+     {props.matches.map(upcomingMatch => (
     <li>
-      {upcomingMatch.unique_idr}
+      {upcomingMatch.homeTeam}
     </li>
   ))}
     </div>

@@ -1,6 +1,6 @@
 function Game (props) {
     return (
-      <div style={{backgroundColor:'blueviolet'}}>
+      <div >
         <h1> {props.homeTeam} VS {props.awayTeam} </h1>
       </div>
     );
