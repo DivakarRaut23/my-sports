@@ -1,11 +1,45 @@
-function MainScore() {
-    return (
-      <div style={{minHeight:'300px'}}>
-      
-        <h1>1/223 (114.3 Overs)</h1>
-      </div>
-    );
-  }
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
+const useStyles = makeStyles({
+  root: {
+    minWidth: 275,
+  },
   
-  export default MainScore;
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+});
+
+export default function MainScore() {
+  const classes = useStyles();
+  
+  return (
+    <Card className={classes.root} variant="outlined">
+      <CardContent>
+        <Typography className={classes.title} color="textSecondary" gutterBottom>
+          AUS
+        </Typography>
+        <Typography variant="h5" component="h2">
+        1/223
+        </Typography>
+        <Typography className={classes.pos} color="textSecondary">
+        (114.3 Overs)
+        </Typography>
+        </CardContent>
+      <CardActions>
+        <Button size="small">Go Back</Button>
+      </CardActions>
+    </Card>
+  );
+}
+
   

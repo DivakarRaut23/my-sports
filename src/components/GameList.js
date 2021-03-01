@@ -1,23 +1,35 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Game from './Game';
 import Grid from '@material-ui/core/Grid';
 
-function GameList({ game=[]}) {
+function GameList({handleScore, game=[]}) {
 
   
     return (
 
       game.length && 
-      <div style={{minHeight:'300px'}}>
-        <Grid container spacing={2} style={{backgroundColor:"cornsilk"}}>
-            <Grid item xs={12}>
-            <Game  homeTeam={game[0]["team-1"]} awayTeam={game[0]["team-2"]}/>
+      <div>
+        <Grid container direction="row" spacing={2}>
+            <Grid item xs={3}>
+            <Game handleScore={handleScore} uniqueId={game[0].unique_id} homeTeam={game[0]["team-1"]} awayTeam={game[0]["team-2"]}/>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={3}>
             <Game  homeTeam={game[1]["team-1"]} awayTeam={game[1]["team-2"]}/>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={3}>
             <Game  homeTeam={game[2]["team-1"]} awayTeam={game[2]["team-2"]}/>
+            </Grid>
+            <Grid item xs={3}>
+            <Game  homeTeam={game[3]["team-1"]} awayTeam={game[3]["team-2"]}/>
+            </Grid>
+            <Grid item xs={3}>
+            <Game  homeTeam={game[4]["team-1"]} awayTeam={game[4]["team-2"]}/>
+            </Grid>
+            <Grid item xs={3}>
+            <Game  homeTeam={game[5]["team-1"]} awayTeam={game[5]["team-2"]}/>
+            </Grid>
+            <Grid item xs={3}>
+            <Game  homeTeam={game[6]["team-1"]} awayTeam={game[6]["team-2"]}/>
             </Grid>
             
         </Grid>

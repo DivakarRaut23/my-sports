@@ -45,6 +45,7 @@ function App() {
   const [matches, setMatches] = useState([])
   const [matchFormat, setMatchFormat] =  useState('Twenty20');
   const [game, setGame] = useState();
+  const [mainScore, setMainScore] = useState(false)
   const classes = useStyles();
 
   useEffect(() => {
@@ -64,23 +65,30 @@ function App() {
   },[game]);
 
   const formatHandler = (tabValue) => {
+    
     setMatchFormat(tabValue)
 
     switch(tabValue) {
       case "Twenty20":
-        setGame(matches.filter((match) => match.type==="Twenty20"))
+        setGame(matches.filter((match) =>  match.type==="Twenty20"))
         break;
       case "ODI":
         setGame(matches.filter((match) => match.type==="ODI"))
         break;
-      default:
+      case "Test":
         setGame(matches.filter((match) => match.type===""))
+        console.log("test games >>", game)
+        break;
+      default:
+        setGame(matches)
     }
+   }
 
-    
+   const handleScore = (matchId) => {
 
+    alert(matchId)
 
-  }
+   }
    
   return (
     <div className={classes.root}>
@@ -88,18 +96,17 @@ function App() {
         <Grid item xs={12}>
           <Paper className={classes.paper}><Header /></Paper>
         </Grid>
-        <Grid container spacing={2} className={classes.main}>
-        <Grid item xs={12} sm={2}>
-          <Paper className={classes.paper}><GameList game={game}/></Paper>
-        </Grid>
-        <Grid item xs={12} sm={10}>
-          <Paper className={classes.mainscore}><MainScore /></Paper>
+        <Grid container direction="row" spacing={2} className={classes.main}>
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+          {mainScore? <MainScore /> : <GameList handleScore={handleScore} game={game}/>}
+          </Paper> 
         </Grid>
         </Grid>
         <Grid item xs={12}>
           <Paper className={classes.paper}><Footer  formatHandler={formatHandler}/></Paper>
         </Grid>
-      </Grid>
+        </Grid>
     </div>
   );
 }
