@@ -9,15 +9,15 @@
   
   const useStyles = makeStyles({
     root: {
-      minWidth: 275,
-      maxHeight : 180,
+      Width: 243,
+      Height : 110,
       backgroundColor: "#90caf9",
     },
     title: {
       fontSize: 14,
     },
-    pos: {
-      marginBottom: 12,
+    button: {
+      padding: 5,
     },
   });
   
@@ -38,7 +38,7 @@
           </Typography>
         
         </CardContent>
-        <CardActions>
+        <CardActions className={classes.button}>
           <Button onClick={()=>handleScore(uniqueId)}size="small" color="primary" variant="contained">Check Score</Button>
         </CardActions>
       </Card>

@@ -8,17 +8,15 @@ function Footer({formatHandler}) {
     return (
       <div style={{alignContent:'center'}}>
         <Tabs indicatorColor="primary">
-          <Tab label="Twenty20" onClick={() => formatHandler('Twenty20')}/>
-          <Tab label="ODI" onClick={() => formatHandler('ODI')}/>
-          <Tab label="Test" onClick={() => formatHandler('Test')}/>
+          <Tab value="Twenty20" label="Twenty20" onClick={() => formatHandler('Twenty20')}/>
+          <Tab value="ODI" label="ODI" onClick={() => formatHandler('ODI')}/>
+          <Tab value="Test" label="Test" onClick={() => formatHandler('Test')}> Test
+            </Tab>  
         </Tabs>
-
-
-
       </div>
       
     );
-  }
+  } 
    
   export default Footer;
   

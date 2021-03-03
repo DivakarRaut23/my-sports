@@ -45,7 +45,7 @@ function App() {
   const [matches, setMatches] = useState([])
   const [matchFormat, setMatchFormat] =  useState('Twenty20');
   const [game, setGame] = useState();
-  const [mainScore, setMainScore] = useState(false)
+  const [mainScore, setMainScore] = useState()
   const classes = useStyles();
 
   useEffect(() => {
@@ -68,12 +68,14 @@ function App() {
     
     setMatchFormat(tabValue)
 
+   
+
     switch(tabValue) {
       case "Twenty20":
-        setGame(matches.filter((match) =>  match.type==="Twenty20"))
+        setGame(matches.filter((match) =>  match.type==="Twenty20" ))
         break;
       case "ODI":
-        setGame(matches.filter((match) => match.type==="ODI"))
+        setGame(matches.filter((match) => match.type==="ODI" ))
         break;
       case "Test":
         setGame(matches.filter((match) => match.type===""))
@@ -88,6 +90,17 @@ function App() {
 
     alert(matchId)
 
+
+    Axios.get(`https://cricapi.com/api/cricketScore?apikey=${API_KEY}&unique_id=${matchId}`).then(
+        (response) => {
+        
+          setMainScore(response.data);
+          
+        }
+      ).catch((error) => console.log('Error: ', error));
+  
+      console.log("Detail Matches >>>",mainScore);
+
    }
    
   return (
@@ -99,7 +112,7 @@ function App() {
         <Grid container direction="row" spacing={2} className={classes.main}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-          {mainScore? <MainScore /> : <GameList handleScore={handleScore} game={game}/>}
+          {mainScore? <MainScore setMainScore={setMainScore} mainScore={mainScore}/> : <GameList handleScore={handleScore} game={game}/>}
           </Paper> 
         </Grid>
         </Grid>
