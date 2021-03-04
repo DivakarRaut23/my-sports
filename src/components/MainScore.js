@@ -28,12 +28,12 @@ export default function MainScore({mainScore,setMainScore}) {
   teamTwoScore : "Scores Not Available"
  }
 
- if(mainScore.score){
+ if(mainScore.score  && mainScore.matchStarted){
 
 
 
 
-  let score = mainScore.score && mainScore.score.split("/");
+  let score = mainScore.matchStarted && mainScore.score && mainScore.score.split("/");
   let score2 = score.length && score[1].split("v");
 
   cricScore.teamOneScore = score[0].match(/\d+/g) + "/" + score2[0]

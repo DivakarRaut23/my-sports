@@ -21,7 +21,7 @@
     },
   });
   
-  export default function Game({homeTeam,awayTeam, handleScore,uniqueId}) {
+  export default function Game({homeTeam,awayTeam, handleScore,uniqueId, date}) {
     const classes = useStyles();
       
     return (
@@ -36,10 +36,13 @@
           <Typography className={classes.pos} color="textSecondary">
           {awayTeam}
           </Typography>
+          <Typography className={classes.pos} color="textSecondary">
+          {date.slice(0,10)}
+          </Typography>
         
         </CardContent>
         <CardActions className={classes.button}>
-          <Button onClick={()=>handleScore(uniqueId)}size="small" color="primary" variant="contained">Check Score</Button>
+          <Button  onClick={()=>handleScore(uniqueId)}size="small" color="primary" variant="contained">Check Score</Button>
         </CardActions>
       </Card>
     );

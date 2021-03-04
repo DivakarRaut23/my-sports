@@ -2,6 +2,8 @@ import React from 'react';
 import Game from './Game';
 import Grid from '@material-ui/core/Grid';
 
+
+
 function GameList({handleScore, game=[]}) {
 
   
@@ -10,7 +12,27 @@ function GameList({handleScore, game=[]}) {
       game.length && 
       <div>
         <Grid container direction="row" spacing={2}>
-            <Grid item xs={3}>
+           
+           {game.map((g,index) => {
+             return (
+              <Grid item xs={12} md={6} lg={4}>
+              <Game
+              handleScore={handleScore} 
+              uniqueId={game[index].unique_id} 
+              homeTeam={game[index]["team-1"]} 
+              awayTeam={game[index]["team-2"]}
+              date={game[index].date}
+              />
+              </Grid>
+
+             )
+           })}
+
+           <Grid>
+            
+           </Grid>
+           
+            {/* <Grid item xs={3}>
             <Game handleScore={handleScore} uniqueId={game[0].unique_id} homeTeam={game[0]["team-1"]} awayTeam={game[0]["team-2"]}/>
             </Grid>
             <Grid item xs={3}>
@@ -30,7 +52,7 @@ function GameList({handleScore, game=[]}) {
             </Grid>
             <Grid item xs={3}>
             <Game handleScore={handleScore} uniqueId={game[6].unique_id} homeTeam={game[6]["team-1"]} awayTeam={game[6]["team-2"]}/>
-            </Grid>
+            </Grid> */}
             
         </Grid>
       </div>

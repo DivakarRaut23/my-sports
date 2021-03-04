@@ -45,7 +45,8 @@ function App() {
   const [matches, setMatches] = useState([])
   const [matchFormat, setMatchFormat] =  useState('Twenty20');
   const [game, setGame] = useState();
-  const [mainScore, setMainScore] = useState()
+  const [mainScore, setMainScore] = useState();
+  const [matchId, setMatchId] = useState();
   const classes = useStyles();
 
   useEffect(() => {
@@ -88,10 +89,15 @@ function App() {
 
    const handleScore = (matchId) => {
 
-    alert(matchId)
+    setMatchId(matchId)
 
 
-    Axios.get(`https://cricapi.com/api/cricketScore?apikey=${API_KEY}&unique_id=${matchId}`).then(
+   }
+
+   
+    useEffect(() => {
+
+     Axios.get(`https://cricapi.com/api/cricketScore?apikey=${API_KEY}&unique_id=${matchId}`).then(
         (response) => {
         
           setMainScore(response.data);
@@ -100,8 +106,17 @@ function App() {
       ).catch((error) => console.log('Error: ', error));
   
       console.log("Detail Matches >>>",mainScore);
+      
 
-   }
+    },[matchId])
+
+     
+
+      
+    
+   
+
+   
    
   return (
     <div className={classes.root}>
@@ -117,7 +132,7 @@ function App() {
         </Grid>
         </Grid>
         <Grid item xs={12}>
-          <Paper className={classes.paper}><Footer  formatHandler={formatHandler}/></Paper>
+          <Paper className={classes.paper}><Footer formatHandler={formatHandler}/></Paper>
         </Grid>
         </Grid>
     </div>
