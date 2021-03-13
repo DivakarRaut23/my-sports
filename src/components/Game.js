@@ -21,8 +21,10 @@
     },
   });
   
-  export default function Game({homeTeam,awayTeam, handleScore,uniqueId, date}) {
+  export default function Game({homeTeam,awayTeam, handleScore,uniqueId,game, date,index}) {
     const classes = useStyles();
+
+    
       
     return (
       <Card className={classes.root}>
@@ -37,12 +39,13 @@
           {awayTeam}
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
-          {date.slice(0,10)}
+          {date.slice(0,10)} / {game[index].matchStarted ? "Yes" : "No"} 
+        {console.log(`${homeTeam} >>`,game[index].matchStarted)}
           </Typography>
         
         </CardContent>
         <CardActions className={classes.button}>
-          <Button  onClick={()=>handleScore(uniqueId)}size="small" color="primary" variant="contained">Check Score</Button>
+          <Button  disabled={(!game[index].matchStarted)} onClick={()=>handleScore(uniqueId)}size="small" color="primary" variant="contained">Check Score</Button>
         </CardActions>
       </Card>
     );

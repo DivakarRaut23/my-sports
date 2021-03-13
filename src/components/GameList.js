@@ -1,10 +1,43 @@
-import React from 'react';
+import React, {useState}from 'react';
 import Game from './Game';
 import Grid from '@material-ui/core/Grid';
+import Pagination from './Pagination';
+
 
 
 
 function GameList({handleScore, game=[]}) {
+
+  const [display, setDisplay] = useState(0);
+
+  const handlePagination = page => {
+
+    setDisplay(page)
+
+  }
+
+  const gameList = game.map((g,index) => {
+    return (
+     <Grid key={g.matchId} item xs={12} md={6} lg={4}>
+     <Game
+     handleScore={handleScore} 
+     uniqueId={game[index].unique_id} 
+     homeTeam={game[index]["team-1"]} 
+     awayTeam={game[index]["team-2"]}
+     date={game[index].date}
+     index={index}
+     game={game}
+     />
+     </Grid>
+
+    )
+  })
+
+  const displayPage = gameList.slice(display, display +6)
+
+  
+
+  console.log("gameList .>>>", gameList)
 
   
     return (
@@ -12,47 +45,10 @@ function GameList({handleScore, game=[]}) {
       game.length && 
       <div>
         <Grid container direction="row" spacing={2}>
-           
-           {game.map((g,index) => {
-             return (
-              <Grid item xs={12} md={6} lg={4}>
-              <Game
-              handleScore={handleScore} 
-              uniqueId={game[index].unique_id} 
-              homeTeam={game[index]["team-1"]} 
-              awayTeam={game[index]["team-2"]}
-              date={game[index].date}
-              />
-              </Grid>
-
-             )
-           })}
-
-           <Grid>
-            
+         {displayPage}
+           <Grid item xs={12}>
+            <Pagination handlePagination={handlePagination} count={game.length} page={Math.ceil(game.length/6)}/>
            </Grid>
-           
-            {/* <Grid item xs={3}>
-            <Game handleScore={handleScore} uniqueId={game[0].unique_id} homeTeam={game[0]["team-1"]} awayTeam={game[0]["team-2"]}/>
-            </Grid>
-            <Grid item xs={3}>
-            <Game handleScore={handleScore} uniqueId={game[1].unique_id} homeTeam={game[1]["team-1"]} awayTeam={game[1]["team-2"]}/>
-            </Grid>
-            <Grid item xs={3}>
-            <Game handleScore={handleScore} uniqueId={game[2].unique_id} homeTeam={game[2]["team-1"]} awayTeam={game[2]["team-2"]}/>
-            </Grid>
-            <Grid item xs={3}>
-            <Game handleScore={handleScore} uniqueId={game[3].unique_id} homeTeam={game[3]["team-1"]} awayTeam={game[3]["team-2"]}/>
-            </Grid>
-            <Grid item xs={3}>
-            <Game handleScore={handleScore} uniqueId={game[4].unique_id} homeTeam={game[4]["team-1"]} awayTeam={game[4]["team-2"]}/>
-            </Grid>
-            <Grid item xs={3}>
-            <Game handleScore={handleScore} uniqueId={game[5].unique_id} homeTeam={game[5]["team-1"]} awayTeam={game[5]["team-2"]}/>
-            </Grid>
-            <Grid item xs={3}>
-            <Game handleScore={handleScore} uniqueId={game[6].unique_id} homeTeam={game[6]["team-1"]} awayTeam={game[6]["team-2"]}/>
-            </Grid> */}
             
         </Grid>
       </div>
